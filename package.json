@@ -1,0 +1,20 @@
+{
+  "name": "2021.1_G02_TaNaMesa_Order",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/UnBArqDsw2021-1/2021.1_G02_TaNaMesa_Order.git",
+  "author": "Lucas Boaventura <lucasxboaventura@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev:server": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5"
+  }
+}
