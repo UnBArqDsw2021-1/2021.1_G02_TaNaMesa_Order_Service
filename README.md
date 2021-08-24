@@ -24,6 +24,23 @@ Repositório para o serviço de **Order** do projeto da disciplina de Desenho e 
 ## Sobre 🍔
 Um sistema para que as pessoas possam chegar no restaurante fazer seus pedidos separados por pessoa e que facilite para daber o valor que cada um vai pagar ao final. 
 
+## Descritivo dos Principais Aspectos Técnicos 
+
+**Principal(is) Metodologia(s) Adotada(s)**: Kanban, XP, Scrum<br>
+**Principais Linguagens Utilizadas e/ou Pretendidas**: Typescript, CSS, Html<br>
+**Principais Tecnologias Utilizadas e/ou Pretendidas**: Docker, Heroku, ReactJS<br>
+**Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: Micro serviços<br>
+
+## O Projeto está rodando?
+
+( ) SIM
+( ) NÃO
+Se SIM, insira um manual (ou um script) para auxiliar ainda mais os interessados em consultar o projeto.
+
+## Informações Complementares 
+
+Quaisquer outras informações sobre seu projeto podem ser descritas nessa seção.
+
 ## Como rodar
 
 #### Build
