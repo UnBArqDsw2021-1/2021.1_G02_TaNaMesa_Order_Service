@@ -28,7 +28,7 @@ Um sistema para que as pessoas possam chegar no restaurante fazer seus pedidos s
 
 **Principal(is) Metodologia(s) Adotada(s)**: Kanban, XP, Scrum<br>
 **Principais Linguagens Utilizadas e/ou Pretendidas**: Typescript, CSS, Html<br>
-**Principais Tecnologias Utilizadas e/ou Pretendidas**: Docker, Heroku, ReactJS<br>
+**Principais Tecnologias Utilizadas e/ou Pretendidas**: Docker, Heroku, Node.js<br>
 **Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: Micro serviços<br>
 
 ## O Projeto está rodando?
