@@ -6,7 +6,8 @@
   "author": "Lucas Boaventura <lucasxboaventura@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev:server": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts"
+    "dev:server": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
+    "test": "jest"
   },
   "dependencies": {
     "@babel/register": "^7.15.3",
