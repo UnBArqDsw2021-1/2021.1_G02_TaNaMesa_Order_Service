@@ -1,18 +1,11 @@
  
-FROM node:alpine
+FROM node:14.16
 
-ARG YARN_PARAMS
+WORKDIR /app
 
-ENV YARN_COMMAND=$YARN_PARAMS
+COPY package.json .
 
-COPY ./backend .
+RUN yarn install
+COPY . .
 
-WORKDIR .
-
-RUN apk update \
-    && apk add --no-cache git \
-    && yarn install
-
-EXPOSE 3000
-
-CMD cd backend && yarn $YARN_COMMAND
+CMD ["/bin/sh", "-c", "yarn build && yarn start"]
