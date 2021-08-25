@@ -7,7 +7,10 @@
   "license": "MIT",
   "scripts": {
     "dev:server": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
-    "test": "jest"
+    "build": "yarn clean && babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
+    "start": "node dist/server.js",
+    "test": "jest",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@babel/register": "^7.15.3",
