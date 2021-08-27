@@ -41,23 +41,54 @@ Se SIM, insira um manual (ou um script) para auxiliar ainda mais os interessados
 
 Quaisquer outras informações sobre seu projeto podem ser descritas nessa seção.
 
-## Como rodar
+## Ambientes
+### Local
+**[Disponível na porta 3333.](http://localhost:3333/)**
 
-#### Build
+### Ambiente de homologação
+**[Disponível no Heroku]()**
 
-```bash
-$ docker-compose build
+### Ambiente de produção
+**[Disponível no Heroku]()**
+
+***
+## Colocando no ar localmente
+
+
+1. Build
+```shell
+    make build
+```
+2. Executar
+```shell
+    make run
+```
+2.1 Executar em background
+```shell
+    make run-silent
+```
+2.2 Buildar e executar
+```shell
+    make run-build
+```
+3. Desativar o container
+```shell
+    make down
 ```
 
-#### Run service
+## Rodando os testes
 
-```bash
-$ docker-compose up
+```shell
+    make test
 ```
 
-#### Parar o docker
-
-```bash
-$ docker-compose down
+## Cobertura de testes
+```shell
+    make cov
 ```
 
+## Acessando o banco de dados 
+
+```shell
+    make check-db
+```
