@@ -1,8 +1,29 @@
-import express from 'express';
-import routes from './routes';
+/* eslint-disable no-throw-literal */
+import express, { Application } from "express";
+import cors from "cors";
 
-const app = express();
-app.use(express.json());
-app.use(routes);
+import routes from "./routes";
 
-export default app;
+import "./db/index";
+
+class App {
+  public server: Application;
+
+  constructor() {
+    this.server = express();
+
+    this.middlewares();
+    this.routes();
+  }
+
+  middlewares() {
+    this.server.use(cors());
+    this.server.use(express.json());
+  }
+
+  routes() {
+    this.server.use(routes);
+  }
+}
+
+export default new App().server;

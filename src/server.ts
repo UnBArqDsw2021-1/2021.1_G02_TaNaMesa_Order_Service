@@ -1,6 +1,17 @@
-import app from './app';
+import app from "./app";
+import Database from "./db";
 
-app.listen(3333, () => {
-  console.log('😝 Bem-vindo!\n');
-  console.log('🚀 Order service started on port 3333\n\n');
-});
+const port = process.env.PORT || 3333;
+
+(async () => {
+  try {
+    await Database.connection.sync();
+
+    app.listen(port, () => {
+      console.log("😝 Bem-vindo!\n");
+      console.log(`🚀 Order service started on port ${port}\n\n`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+})();
