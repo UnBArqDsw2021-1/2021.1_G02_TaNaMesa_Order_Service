@@ -2,3 +2,5 @@
 node_modules
 dist
 /*.json
+src/models/*.js
+src/config/*.js
