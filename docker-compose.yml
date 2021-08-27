@@ -19,6 +19,8 @@ services:
       - DB_HOST_DEV=db_order
     depends_on:
       - db_order
+    # networks:
+    #   - tanamesa_gateway
   db_order:
     image: postgres:13.2-alpine
     ports:
@@ -28,3 +30,10 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    # networks:
+    #   - tanamesa_gateway
+
+# networks:
+#   tanamesa_gateway:
+#     external: true
+#     driver: "bridge"
