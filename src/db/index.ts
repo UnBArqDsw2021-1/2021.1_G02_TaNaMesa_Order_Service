@@ -2,6 +2,8 @@ import { Sequelize } from "sequelize";
 import databaseConfig from "../config/database";
 import { OrderFactory, OrderStatic } from "../models/Order";
 
+console.log(databaseConfig[process.env.NODE_ENV]);
+
 class Database {
   public connection: Sequelize;
 
