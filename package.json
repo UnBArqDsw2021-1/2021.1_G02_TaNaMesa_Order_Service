@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/UnBArqDsw2021-1/2021.1_G02_TaNaMesa_Order.git",
-  "author": "Lucas Boaventura <lucasxboaventura@hotmail.com>",
-  "license": "MIT",
+  "license": "GPLv3",
   "scripts": {
     "dev:server": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
     "build": "yarn clean && babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
