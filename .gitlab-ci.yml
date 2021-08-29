@@ -1,0 +1,20 @@
+stages:
+  - Test
+
+test:jest:
+  stage: Test
+  image: node:alpine
+  script:
+    - jest --passWithNoTests
+
+test:coverage:
+  stage: Test
+  image: node:alpine
+  script:
+    - jest --coverage --passWithNoTests
+
+test:lint:
+  stage: Test
+  image: node:alpine
+  script:
+    - eslint . --ext .js --ext .ts
