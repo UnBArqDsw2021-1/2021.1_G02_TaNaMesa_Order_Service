@@ -19,15 +19,15 @@ interface ItemAttributes {
   categoria: string;
 }
 export interface ItemModel extends Model<ItemAttributes>, ItemAttributes { }
-export class Order extends Model<ItemModel, ItemAttributes> { }
+export class Item extends Model<ItemModel, ItemAttributes> { }
 
 export type ItemStatic = typeof Model & {
   new(values?: object, options?: BuildOptions): ItemModel;
 };
 
-export function OrderFactory(sequelize: Sequelize): ItemStatic {
+export function ItemFactory(sequelize: Sequelize): ItemStatic {
   return <ItemStatic>sequelize.define(
-    "orders",
+    "items",
     {
       idItem: {
         type: INTEGER,
@@ -46,7 +46,7 @@ export function OrderFactory(sequelize: Sequelize): ItemStatic {
     },
     {
       freezeTableName: true,
-      timestamps: false,
+      timestamps: true,
       underscored: true,
     }
   );
