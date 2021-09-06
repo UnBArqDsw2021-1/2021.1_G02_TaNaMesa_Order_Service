@@ -31,7 +31,7 @@ export function TableFactory(sequelize: Sequelize): TableStatic {
         autoIncrement: true,
       },
       cpfGarcom: {
-        type: BIGINT,
+        type: STRING(11),
         references: {model: 'employees', key: 'cpf'}
       },
     },

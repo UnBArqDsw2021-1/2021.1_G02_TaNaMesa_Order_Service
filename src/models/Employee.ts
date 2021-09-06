@@ -27,7 +27,7 @@ export function EmployeeFactory(sequelize: Sequelize): EmployeeStatic {
     "employees",
     {
       cpf: {
-        type: BIGINT,
+        type: STRING(11),
         primaryKey: true,
       },
       nome: STRING(50),
