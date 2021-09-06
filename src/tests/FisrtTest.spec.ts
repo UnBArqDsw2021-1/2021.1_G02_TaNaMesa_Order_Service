@@ -1,5 +1,5 @@
-test("it should be ok", () => {
-  const user = "Lucas";
+test("it should be ok with Gitlab CI", () => {
+  const user = "Gitlab CI";
 
-  expect(user).toEqual("Lucas");
+  expect(user).toEqual("Gitlab CI");
 });

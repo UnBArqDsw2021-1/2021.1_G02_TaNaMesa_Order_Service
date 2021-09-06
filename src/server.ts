@@ -8,7 +8,7 @@ const port = process.env.PORT || 3333;
     await Database.connection.sync();
 
     app.listen(port, () => {
-      console.log("😝 Bem-vindo!\n");
+      console.log("\n😝 Bem-vindo!");
       console.log(`🚀 Order service started on port ${port}\n\n`);
     });
   } catch (error) {

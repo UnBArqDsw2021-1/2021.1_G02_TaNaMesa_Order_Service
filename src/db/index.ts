@@ -29,13 +29,13 @@ class Database {
     this.connection
       .authenticate()
       .then(() => {
-        console.log("🗃️ Banco de Dados conectado!\n");
+        console.log("\n\n🗃️ Banco de Dados conectado!\n");
 
         this.order = OrderFactory(this.connection);
         this.order.sync();
       })
       .catch(() => {
-        console.log("😵‍💫❌ Erro ao conectar no Banco\n");
+        console.log("\n\n😵‍💫❌ Erro ao conectar no Banco\n");
       });
   }
 }
