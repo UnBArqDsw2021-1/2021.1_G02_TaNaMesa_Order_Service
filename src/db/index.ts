@@ -36,23 +36,23 @@ class Database {
   testConnection(): void {
     this.connection
       .authenticate()
-      .then(() => {
+      .then(async() => {
         console.log("🗃️ Banco de Dados conectado!\n");
 
         this.order = OrderFactory(this.connection);
-        this.order.sync();
+        await this.order.sync();
 
         this.item = ItemFactory(this.connection);
-        this.item.sync();
+        await this.item.sync();
 
         this.client = ClientFactory(this.connection);
-        this.client.sync();
+        await this.client.sync();
 
         this.employee = EmployeeFactory(this.connection);
-        this.employee.sync();
+        await this.employee.sync();
 
         this.table = TableFactory(this.connection);
-        this.table.sync();
+        await this.table.sync();
       })
       .catch(() => {
         console.log("😵‍💫❌ Erro ao conectar no Banco\n");

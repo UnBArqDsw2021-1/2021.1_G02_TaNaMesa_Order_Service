@@ -11,8 +11,8 @@ import {
 } from "sequelize";
 
 interface TableAttributes {
-  idTable: number;
-  nome: string;
+  idMesa: number;
+  cpfGarcom: string;
 }
 export interface TableModel extends Model<TableAttributes>, TableAttributes { }
 export class Table extends Model<TableModel, TableAttributes> { }
@@ -32,7 +32,7 @@ export function TableFactory(sequelize: Sequelize): TableStatic {
       },
       cpfGarcom: {
         type: BIGINT,
-        //references: {model: 'Employee', key: 'cpf'}
+        references: {model: 'employees', key: 'cpf'}
       },
     },
     {

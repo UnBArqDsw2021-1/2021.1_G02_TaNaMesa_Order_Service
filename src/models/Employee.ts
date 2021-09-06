@@ -11,8 +11,9 @@ import {
 } from "sequelize";
 
 interface EmployeeAttributes {
-  idEmployee: number;
+  cpf: number;
   nome: string;
+  ocupacao: string;
 }
 export interface EmployeeModel extends Model<EmployeeAttributes>, EmployeeAttributes { }
 export class Employee extends Model<EmployeeModel, EmployeeAttributes> { }
@@ -26,7 +27,7 @@ export function EmployeeFactory(sequelize: Sequelize): EmployeeStatic {
     "employees",
     {
       cpf: {
-        type: BIGINT(11),
+        type: BIGINT,
         primaryKey: true,
       },
       nome: STRING(50),
