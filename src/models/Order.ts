@@ -26,7 +26,7 @@ export type OrderStatic = typeof Model & {
 
 export function OrderFactory(sequelize: Sequelize): OrderStatic {
   return <OrderStatic>sequelize.define(
-    "order",
+    "orders",
     {
       idOrder: {
         type: INTEGER,
