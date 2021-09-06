@@ -34,12 +34,12 @@ export function ItemFactory(sequelize: Sequelize): ItemStatic {
         primaryKey: true,
         autoIncrement: true,
       },
-      nome: STRING(50),
-      preco: INTEGER,
-      desconto: INTEGER,
-      descricao: STRING(50),
-      observacao: STRING(50),
-      categoria: {
+      name: STRING(50),
+      price: INTEGER,
+      discount: INTEGER,
+      description: STRING(50),
+      note: STRING(50),
+      category: {
         type: ENUM("hamburgueres", "petiscos", "molhos adicionais", "saladas", "bebidas", "sobremesas"),
         allowNull: false
       },
