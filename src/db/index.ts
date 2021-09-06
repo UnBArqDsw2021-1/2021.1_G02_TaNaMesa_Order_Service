@@ -3,6 +3,8 @@ import databaseConfig from "../config/database";
 import { OrderFactory, OrderStatic } from "../models/Order";
 import { ItemFactory, ItemStatic } from "../models/Item";
 import { ClientFactory, ClientStatic } from "../models/Client";
+import { EmployeeFactory, EmployeeStatic } from "../models/Employee";
+import { TableFactory, TableStatic } from "../models/Table";
 
 console.log(databaseConfig[process.env.NODE_ENV]);
 
@@ -12,6 +14,8 @@ class Database {
   public order: OrderStatic;
   public item: ItemStatic;
   public client: ClientStatic;
+  public employee: EmployeeStatic;
+  public table: TableStatic;
 
   constructor(test: boolean) {
     this.init(test);
@@ -43,6 +47,12 @@ class Database {
 
         this.client = ClientFactory(this.connection);
         this.client.sync();
+
+        this.employee = EmployeeFactory(this.connection);
+        this.employee.sync();
+
+        this.table = TableFactory(this.connection);
+        this.table.sync();
       })
       .catch(() => {
         console.log("😵‍💫❌ Erro ao conectar no Banco\n");
