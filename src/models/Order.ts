@@ -10,12 +10,12 @@ import {
 } from "sequelize";
 
 interface OrderAttributes {
-  idComanda: number;
+  idOrder: number;
   status: string;
-  idMesa: number;
-  idCliente: number;
-  nomeCliente: string;
-  data: Date;
+  idTable: number;
+  idClient: number;
+  nameClient: string;
+  date: Date;
 }
 export interface OrderModel extends Model<OrderAttributes>, OrderAttributes {}
 export class Order extends Model<OrderModel, OrderAttributes> {}
@@ -26,22 +26,22 @@ export type OrderStatic = typeof Model & {
 
 export function OrderFactory(sequelize: Sequelize): OrderStatic {
   return <OrderStatic>sequelize.define(
-    "orders",
+    "order",
     {
-      idComanda: {
+      idOrder: {
         type: INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       status: {
-        type: ENUM("na fila", "na cozinha", "preparando", "na mesa"),
+        type: ENUM("na fila", "na cozinha", "preparado", "na mesa"),
         allowNull: false,
         defaultValue: "na fila",
       },
-      idMesa: INTEGER,
-      idCliente: INTEGER,
-      nomeCliente: STRING(50),
-      data: {
+      idTable: INTEGER,
+      idClient: INTEGER,
+      nameClient: STRING(50),
+      date: {
         type: DATE,
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
