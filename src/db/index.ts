@@ -37,7 +37,7 @@ class Database {
     this.connection
       .authenticate()
       .then(async() => {
-        console.log("🗃️ Banco de Dados conectado!\n");
+        console.log("\n\n🗃️ Banco de Dados conectado!\n");
 
         this.order = OrderFactory(this.connection);
         await this.order.sync();
@@ -55,7 +55,7 @@ class Database {
         await this.table.sync();
       })
       .catch(() => {
-        console.log("😵‍💫❌ Erro ao conectar no Banco\n");
+        console.log("\n\n😵‍💫❌ Erro ao conectar no Banco\n");
       });
   }
 }
