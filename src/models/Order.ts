@@ -49,7 +49,7 @@ export function OrderFactory(sequelize: Sequelize): OrderStatic {
     },
     {
       freezeTableName: true,
-      timestamps: false,
+      timestamps: true,
       underscored: true,
     }
   );
