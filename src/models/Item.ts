@@ -38,7 +38,7 @@ export function ItemFactory(sequelize: Sequelize): ItemStatic {
       price: INTEGER,
       discount: INTEGER,
       description: STRING(50),
-      note: STRING(50),
+      notes: STRING(50),
       category: {
         type: ENUM("hamburgueres", "petiscos", "molhos adicionais", "saladas", "bebidas", "sobremesas"),
         allowNull: false
