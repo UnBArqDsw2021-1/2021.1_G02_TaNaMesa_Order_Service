@@ -17,18 +17,18 @@ interface OrderAttributes {
   nomeCliente: string;
   data: Date;
 }
-export interface OrderModel extends Model<OrderAttributes>, OrderAttributes {}
-export class Order extends Model<OrderModel, OrderAttributes> {}
+export interface OrderModel extends Model<OrderAttributes>, OrderAttributes { }
+export class Order extends Model<OrderModel, OrderAttributes> { }
 
 export type OrderStatic = typeof Model & {
-  new (values?: object, options?: BuildOptions): OrderModel;
+  new(values?: object, options?: BuildOptions): OrderModel;
 };
 
 export function OrderFactory(sequelize: Sequelize): OrderStatic {
   return <OrderStatic>sequelize.define(
     "orders",
     {
-      idComanda: {
+      idOrder: {
         type: INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -38,10 +38,10 @@ export function OrderFactory(sequelize: Sequelize): OrderStatic {
         allowNull: false,
         defaultValue: "na fila",
       },
-      idMesa: INTEGER,
-      idCliente: INTEGER,
-      nomeCliente: STRING(50),
-      data: {
+      idTable: INTEGER,
+      idClient: INTEGER,
+      nameClient: STRING(50),
+      date: {
         type: DATE,
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
