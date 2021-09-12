@@ -1,5 +1,8 @@
 import { Router } from "express";
 
+import clientRoutes from './client';
+import itemRoutes from './item';
+
 const routes = Router();
 
 routes.get("/", (request, response) => {
@@ -19,5 +22,8 @@ routes.get("/", (request, response) => {
     ],
   });
 });
+
+routes.use('/client', clientRoutes);
+routes.use('/item', itemRoutes);
 
 export default routes;
