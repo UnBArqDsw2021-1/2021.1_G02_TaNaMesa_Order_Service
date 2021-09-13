@@ -1,5 +1,7 @@
 import { Router } from "express";
 
+import employeeRoutes from './employee';
+
 const routes = Router();
 
 routes.get("/", (request, response) => {
@@ -19,5 +21,7 @@ routes.get("/", (request, response) => {
     ],
   });
 });
+
+routes.use('/employee', employeeRoutes);
 
 export default routes;
