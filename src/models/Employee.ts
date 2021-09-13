@@ -3,17 +3,14 @@ import {
   BuildOptions,
   Model,
   Sequelize,
-  DATE,
-  INTEGER,
-  BIGINT,
   ENUM,
   STRING,
 } from "sequelize";
 
 interface EmployeeAttributes {
   cpf: number;
-  nome: string;
-  ocupacao: string;
+  name: string;
+  occupation: string;
 }
 export interface EmployeeModel extends Model<EmployeeAttributes>, EmployeeAttributes { }
 export class Employee extends Model<EmployeeModel, EmployeeAttributes> { }
@@ -30,8 +27,8 @@ export function EmployeeFactory(sequelize: Sequelize): EmployeeStatic {
         type: STRING(11),
         primaryKey: true,
       },
-      nome: STRING(50),
-      ocupacao: {
+      name: STRING(50),
+      occupation: {
         type: ENUM("gerente", "cozinha", "garcom"),
         allowNull: false
       }
