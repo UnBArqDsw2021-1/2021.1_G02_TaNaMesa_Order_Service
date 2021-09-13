@@ -1,4 +1,5 @@
 import { Router } from "express";
+import orderRoutes from'./order'
 
 const routes = Router();
 
@@ -19,5 +20,7 @@ routes.get("/", (request, response) => {
     ],
   });
 });
+
+routes.use('/orders', orderRoutes)
 
 export default routes;
