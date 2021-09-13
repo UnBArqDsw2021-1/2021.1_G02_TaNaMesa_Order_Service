@@ -11,12 +11,12 @@ import {
 
 interface ItemAttributes {
   idItem: number;
-  nome: string;
-  preco: number;
-  desconto: number;
-  descricao: string;
-  observacao: string;
-  categoria: string;
+  name: string;
+  price: number;
+  discount: number;
+  description: string;
+  notes: string;
+  category: string;
 }
 export interface ItemModel extends Model<ItemAttributes>, ItemAttributes { }
 export class Item extends Model<ItemModel, ItemAttributes> { }
