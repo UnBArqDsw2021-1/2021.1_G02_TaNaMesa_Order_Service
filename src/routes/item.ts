@@ -1,19 +1,27 @@
 import { Router } from "express";
 
-import itemController from '../controllers/itemController';
+import itemController from "../controllers/itemController";
 
 const routes = Router();
 
-routes.post("/", async (request, response) => await itemController.create(request, response));
+routes.post("/", (request, response) =>
+  itemController.create(request, response)
+);
 
-routes.get("/", async (request, response) => await itemController.getAll(request, response));
+routes.get("/", (request, response) =>
+  itemController.getAll(request, response)
+);
 
-routes.get("/:id", async (request, response) => await itemController.getOne(request, response));
+routes.get("/:id", (request, response) =>
+  itemController.getOne(request, response)
+);
 
-routes.put("/:id", async (request, response) => await itemController.edit(request, response));
+routes.put("/:id", (request, response) =>
+  itemController.edit(request, response)
+);
 
-routes.delete("/:id", async (request, response) => await itemController.destroy(request, response));
-
+routes.delete("/:id", (request, response) =>
+  itemController.destroy(request, response)
+);
 
 export default routes;
-
