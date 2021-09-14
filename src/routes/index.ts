@@ -1,5 +1,6 @@
 import { Router } from "express";
 import orderRoutes from'./order'
+import tableRoutes from'./table'
 
 import employeeRoutes from './employee';
 
@@ -23,10 +24,8 @@ routes.get("/", (request, response) => {
   });
 });
 
-<<<<<<< HEAD
 routes.use('/orders', orderRoutes)
-=======
 routes.use('/employee', employeeRoutes);
->>>>>>> 6ba0470336749c81e5fe6a7ff860c4d78d846cd5
+routes.use('/table', tableRoutes);
 
 export default routes;
