@@ -12,7 +12,7 @@ import {
 
 interface TableAttributes {
   idMesa: number;
-  cpfGarcom: string;
+  cpfWaiter: string;
 }
 export interface TableModel extends Model<TableAttributes>, TableAttributes { }
 export class Table extends Model<TableModel, TableAttributes> { }
@@ -25,12 +25,12 @@ export function TableFactory(sequelize: Sequelize): TableStatic {
   return <TableStatic>sequelize.define(
     "tables",
     {
-      idMesa: {
+      idTable: {
         type: INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      cpfGarcom: {
+      cpfWaiter: {
         type: STRING(11),
         references: {model: 'employees', key: 'cpf'}
       },
