@@ -6,13 +6,13 @@ const create = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const fieldsToValidate = ["cpf", "name", "occupation"];
+    const fieldsToValidate = ["name", "price", "description", "category"];
 
     fieldsToValidate.forEach((field: string): Response => {
-      if (!request.body.employee[field]) {
+      if (!request.body.item[field]) {
         return response.status(400).json({
           success: false,
-          message: `O campo ${field} é obrigatório.`,
+          message: `O campo ${field} é obrigatório`,
         });
       }
       return null;
@@ -20,10 +20,10 @@ const create = async (
 
     return response.json({
       success: true,
-      employee: await database.employee.create(request.body.employee),
+      item: await database.item.create(request.body.item),
     });
   } catch (error) {
-    console.log("ERROR --> ", error);
+    console.log("ERROR ---> ", error);
     return response.status(500).json({
       success: false,
       message:
@@ -38,9 +38,16 @@ const getAll = async (
   response: Response
 ): Promise<Response> => {
   try {
+    const filters = {};
+    if (request.query.category) filters.category = request.query.category;
+
     return response.json({
       success: true,
-      employees: await database.employee.findAll(),
+      items: await database.item.findAll({
+        where: {
+          ...filters,
+        },
+      }),
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
@@ -60,7 +67,7 @@ const getOne = async (
   try {
     return response.json({
       success: true,
-      employee: await database.employee.findByPk(request.params.cpf),
+      item: await database.item.findByPk(request.params.id),
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
@@ -78,8 +85,8 @@ const edit = async (
   response: Response
 ): Promise<Response> => {
   try {
-    await database.employee.update(request.body.employee, {
-      where: { cpf: request.params.cpf },
+    await database.item.update(request.body.item, {
+      where: { idItem: request.params.id },
     });
     return response.json({
       success: true,
@@ -100,7 +107,7 @@ const destroy = async (
   response: Response
 ): Promise<Response> => {
   try {
-    await database.employee.destroy({ where: { cpf: request.params.cpf } });
+    await database.item.destroy({ where: { idItem: request.params.id } });
     return response.json({
       success: true,
     });

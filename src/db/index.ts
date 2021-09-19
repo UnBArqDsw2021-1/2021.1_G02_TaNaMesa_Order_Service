@@ -12,9 +12,13 @@ class Database {
   public connection: Sequelize;
 
   public order: OrderStatic;
+
   public item: ItemStatic;
+
   public client: ClientStatic;
+
   public employee: EmployeeStatic;
+
   public table: TableStatic;
 
   constructor(test: boolean) {
@@ -36,7 +40,7 @@ class Database {
   testConnection(): void {
     this.connection
       .authenticate()
-      .then(async() => {
+      .then(async () => {
         console.log("\n\n🗃️ Banco de Dados conectado!\n");
 
         this.order = OrderFactory(this.connection);
