@@ -6,17 +6,24 @@ const create = async (
   response: Response
 ): Promise<Response> => {
   try {
-    if (!request.body.client.name)
-      return response.status(400).json({
-        success: false,
-        message: "O campo nome é obrigatório",
-      });
+    const fieldsToValidate = ["cpf", "name", "occupation"];
+
+    fieldsToValidate.forEach((field: string): Response => {
+      if (!request.body.employee[field]) {
+        return response.status(400).json({
+          success: false,
+          message: `O campo ${field} é obrigatório.`,
+        });
+      }
+      return null;
+    });
+
     return response.json({
       success: true,
-      client: await database.client.create(request.body.client),
+      employee: await database.employee.create(request.body.employee),
     });
   } catch (error) {
-    console.log("ERROR ---> ", error);
+    console.log("ERROR --> ", error);
     return response.status(500).json({
       success: false,
       message:
@@ -33,7 +40,7 @@ const getAll = async (
   try {
     return response.json({
       success: true,
-      clients: await database.client.findAll(),
+      employees: await database.employee.findAll(),
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
@@ -53,7 +60,7 @@ const getOne = async (
   try {
     return response.json({
       success: true,
-      client: await database.client.findByPk(request.params.id),
+      employee: await database.employee.findByPk(request.params.cpf),
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
@@ -71,8 +78,8 @@ const edit = async (
   response: Response
 ): Promise<Response> => {
   try {
-    await database.client.update(request.body.client, {
-      where: { idClient: request.params.id },
+    await database.employee.update(request.body.employee, {
+      where: { cpf: request.params.cpf },
     });
     return response.json({
       success: true,
@@ -93,7 +100,7 @@ const destroy = async (
   response: Response
 ): Promise<Response> => {
   try {
-    await database.client.destroy({ where: { idClient: request.params.id } });
+    await database.employee.destroy({ where: { cpf: request.params.cpf } });
     return response.json({
       success: true,
     });

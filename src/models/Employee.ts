@@ -1,25 +1,18 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import {
-  BuildOptions,
-  Model,
-  Sequelize,
-  DATE,
-  INTEGER,
-  BIGINT,
-  ENUM,
-  STRING,
-} from "sequelize";
+import { BuildOptions, Model, Sequelize, ENUM, STRING } from "sequelize";
 
 interface EmployeeAttributes {
   cpf: number;
-  nome: string;
-  ocupacao: string;
+  name: string;
+  occupation: string;
 }
-export interface EmployeeModel extends Model<EmployeeAttributes>, EmployeeAttributes { }
-export class Employee extends Model<EmployeeModel, EmployeeAttributes> { }
+export interface EmployeeModel
+  extends Model<EmployeeAttributes>,
+    EmployeeAttributes {}
+export class Employee extends Model<EmployeeModel, EmployeeAttributes> {}
 
 export type EmployeeStatic = typeof Model & {
-  new(values?: object, options?: BuildOptions): EmployeeModel;
+  new (values?: object, options?: BuildOptions): EmployeeModel;
 };
 
 export function EmployeeFactory(sequelize: Sequelize): EmployeeStatic {
@@ -30,11 +23,11 @@ export function EmployeeFactory(sequelize: Sequelize): EmployeeStatic {
         type: STRING(11),
         primaryKey: true,
       },
-      nome: STRING(50),
-      ocupacao: {
+      name: STRING(50),
+      occupation: {
         type: ENUM("gerente", "cozinha", "garcom"),
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       freezeTableName: true,

@@ -1,7 +1,8 @@
 import { Router } from "express";
 
-import clientRoutes from './client';
-import itemRoutes from './item';
+import employeeRoutes from "./employee";
+import clientRoutes from "./client";
+import itemRoutes from "./item";
 
 const routes = Router();
 
@@ -23,7 +24,8 @@ routes.get("/", (request, response) => {
   });
 });
 
-routes.use('/client', clientRoutes);
-routes.use('/item', itemRoutes);
+routes.use("/employee", employeeRoutes);
+routes.use("/client", clientRoutes);
+routes.use("/item", itemRoutes);
 
 export default routes;

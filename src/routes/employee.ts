@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import clientController from "../controllers/clientController";
+import clientController from "../controllers/employeeController";
 
 const routes = Router();
 
@@ -12,15 +12,15 @@ routes.get("/", (request, response) =>
   clientController.getAll(request, response)
 );
 
-routes.get("/:id", (request, response) =>
+routes.get("/:cpf", (request, response) =>
   clientController.getOne(request, response)
 );
 
-routes.put("/:id", (request, response) =>
+routes.put("/:cpf", (request, response) =>
   clientController.edit(request, response)
 );
 
-routes.delete("/:id", (request, response) =>
+routes.delete("/:cpf", (request, response) =>
   clientController.destroy(request, response)
 );
 
