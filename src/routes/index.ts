@@ -1,4 +1,6 @@
 import { Router } from "express";
+import orderRoutes from "./order";
+import tableRoutes from "./table";
 
 import employeeRoutes from "./employee";
 import clientRoutes from "./client";
@@ -24,6 +26,8 @@ routes.get("/", (request, response) => {
   });
 });
 
+routes.use("/orders", orderRoutes);
+routes.use("/table", tableRoutes);
 routes.use("/employee", employeeRoutes);
 routes.use("/client", clientRoutes);
 routes.use("/item", itemRoutes);
