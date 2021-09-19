@@ -1,17 +1,26 @@
 import { Router } from "express";
-import orderController from '../controllers/orderController';
-import database from "../db";
+import orderController from "../controllers/orderController";
 
 const routes = Router();
 
-routes.post("/", async (request, response) => await orderController.create(request, response));
+routes.post("/", (request, response) =>
+  orderController.create(request, response)
+);
 
-routes.get("/", async (request, response) => await orderController.getAll(request, response));
+routes.get("/", (request, response) =>
+  orderController.getAll(request, response)
+);
 
-routes.get("/:id", async (request, response) => await orderController.getOne(request, response));
+routes.get("/:id", (request, response) =>
+  orderController.getOne(request, response)
+);
 
-routes.put("/:id", async (request, response) => await orderController.edit(request, response));
+routes.put("/:id", (request, response) =>
+  orderController.edit(request, response)
+);
 
-routes.delete("/:id", async (request, response) => await orderController.destroy(request, response));
+routes.delete("/:id", (request, response) =>
+  orderController.destroy(request, response)
+);
 
 export default routes;
