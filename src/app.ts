@@ -1,10 +1,11 @@
-/* eslint-disable no-throw-literal */
-import express, { Application } from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 
 import routes from "./routes";
 
 import "./db/index";
+
+require("dotenv/config");
 
 class App {
   public server: Application;
