@@ -5,6 +5,7 @@ interface EmployeeAttributes {
   cpf: number;
   name: string;
   occupation: string;
+  password: string;
 }
 export interface EmployeeModel
   extends Model<EmployeeAttributes>,
@@ -26,6 +27,10 @@ export function EmployeeFactory(sequelize: Sequelize): EmployeeStatic {
       name: STRING(50),
       occupation: {
         type: ENUM("gerente", "cozinha", "garcom"),
+        allowNull: false,
+      },
+      password: {
+        type: STRING,
         allowNull: false,
       },
     },
