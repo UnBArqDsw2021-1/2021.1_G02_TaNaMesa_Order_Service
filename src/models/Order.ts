@@ -38,9 +38,18 @@ export function OrderFactory(sequelize: Sequelize): OrderStatic {
         allowNull: false,
         defaultValue: "na fila",
       },
-      idTable: INTEGER,
-      idClient: INTEGER,
-      nameClient: STRING(50),
+      idTable: {
+        type: INTEGER,
+        references: { model: "tables", key: "idTable" },
+      },
+      idClient: {
+        type: INTEGER,
+        references: { model: "clients", key: "idClient" },
+      },
+      nameClient: {
+        type: STRING(50),
+        references: { model: "clients", key: "nameClient" },
+      },
       data: {
         type: DATE,
         allowNull: false,
