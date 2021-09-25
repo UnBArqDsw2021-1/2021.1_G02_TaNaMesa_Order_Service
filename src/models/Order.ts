@@ -10,11 +10,11 @@ import {
 } from "sequelize";
 
 interface OrderAttributes {
-  idComanda: number;
+  idOrder: number;
   status: string;
-  idMesa: number;
-  idCliente: number;
-  nomeCliente: string;
+  idTable: number;
+  idClient: number;
+  nameClient: string;
   data: Date;
 }
 export interface OrderModel extends Model<OrderAttributes>, OrderAttributes {}
@@ -28,7 +28,7 @@ export function OrderFactory(sequelize: Sequelize): OrderStatic {
   return <OrderStatic>sequelize.define(
     "orders",
     {
-      idComanda: {
+      idOrder: {
         type: INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -38,9 +38,9 @@ export function OrderFactory(sequelize: Sequelize): OrderStatic {
         allowNull: false,
         defaultValue: "na fila",
       },
-      idMesa: INTEGER,
-      idCliente: INTEGER,
-      nomeCliente: STRING(50),
+      idTable: INTEGER,
+      idClient: INTEGER,
+      nameClient: STRING(50),
       data: {
         type: DATE,
         allowNull: false,
