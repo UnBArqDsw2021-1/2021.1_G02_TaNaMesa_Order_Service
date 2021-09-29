@@ -17,11 +17,11 @@ interface ItemAttributes {
   notes: string;
   category: string;
 }
-export interface ItemModel extends Model<ItemAttributes>, ItemAttributes {}
-export class Item extends Model<ItemModel, ItemAttributes> {}
+export interface ItemModel extends Model<ItemAttributes>, ItemAttributes { }
+export class Item extends Model<ItemModel, ItemAttributes> { }
 
 export type ItemStatic = typeof Model & {
-  new (values?: object, options?: BuildOptions): ItemModel;
+  new(values?: object, options?: BuildOptions): ItemModel;
 };
 
 export function ItemFactory(sequelize: Sequelize): ItemStatic {
@@ -34,6 +34,7 @@ export function ItemFactory(sequelize: Sequelize): ItemStatic {
         autoIncrement: true,
       },
       name: STRING(50),
+      image: STRING(50),
       price: INTEGER,
       discount: INTEGER,
       description: STRING(50),

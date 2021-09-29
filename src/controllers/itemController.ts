@@ -1,6 +1,17 @@
 import { Request, Response } from "express";
 import database from "../db";
 
+const fs = require('fs');
+const path = require('path')
+
+const base64_encode = (file) => {
+  const bitmap = fs.readFileSync(file);
+  return new Buffer(bitmap).toString('base64');
+}
+
+const getImageName = (id: number, extension: string) =>
+  'item_' + id + '.' + extension
+
 const create = async (
   request: Request,
   response: Response
@@ -41,13 +52,16 @@ const getAll = async (
     const filters = {};
     if (request.query.category) filters.category = request.query.category;
 
+    const items = await database.item.findAll({
+      where: {
+        ...filters,
+      },
+    })
+    items.forEach(item => { if (item.image) item.image = base64_encode(`uploads/${item.image}`) });
+
     return response.json({
       success: true,
-      items: await database.item.findAll({
-        where: {
-          ...filters,
-        },
-      }),
+      items
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
@@ -65,10 +79,14 @@ const getOne = async (
   response: Response
 ): Promise<Response> => {
   try {
+    const item = await database.item.findByPk(request.params.id)
+    if (item.image) item.image = base64_encode(`uploads/${item.image}`);
+
     return response.json({
       success: true,
-      item: await database.item.findByPk(request.params.id),
+      item
     });
+
   } catch (error) {
     console.log("ERROR ---> ", error);
     return response.status(500).json({
@@ -88,6 +106,7 @@ const edit = async (
     await database.item.update(request.body.item, {
       where: { idItem: request.params.id },
     });
+
     return response.json({
       success: true,
     });
@@ -122,4 +141,27 @@ const destroy = async (
   }
 };
 
-export default { create, getAll, getOne, edit, destroy };
+const uploadPhoto = async (
+  request: Request,
+  response: Response
+): Promise<Response> => {
+  try {
+    await database.item.update({ image: getImageName(request.params.id, request.file?.mimetype?.split('/')[1]) }, {
+      where: { idItem: request.params.id },
+    });
+
+    return response.json({
+      success: true
+    });
+  } catch (error) {
+    console.log("ERROR ---> ", error);
+    return response.status(500).json({
+      success: false,
+      message:
+        "Ocorreu um erro ao realizar a operação, tente novamente mais tarde.",
+      error: error.toString(),
+    });
+  }
+};
+
+export default { create, getAll, getOne, edit, destroy, uploadPhoto };
