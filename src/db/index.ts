@@ -7,6 +7,7 @@ import { EmployeeFactory, EmployeeStatic } from "../models/Employee";
 import { TableFactory, TableStatic } from "../models/Table";
 import { ContainFactory, ContainStatic } from "../models/Contain";
 
+console.log(`\n****** ${process.env.NODE_ENV.toUpperCase()} ******`);
 console.log(databaseConfig[process.env.NODE_ENV]);
 
 class Database {
@@ -46,9 +47,6 @@ class Database {
       .then(async () => {
         console.log("\n\n🗃️ Banco de Dados conectado!\n");
 
-        this.order = OrderFactory(this.connection);
-        await this.order.sync();
-
         this.item = ItemFactory(this.connection);
         await this.item.sync();
 
@@ -61,11 +59,16 @@ class Database {
         this.table = TableFactory(this.connection);
         await this.table.sync();
 
+        this.order = OrderFactory(this.connection);
+        await this.order.sync();
+
         this.contain = ContainFactory(this.connection);
         await this.contain.sync();
       })
       .catch(() => {
-        console.log("\n\n😵‍💫❌ Erro ao conectar no Banco\n");
+        console.log(
+          "\n\n😵‍💫❌ Erro ao conectar no Banco e rodar as migrations\n"
+        );
       });
   }
 }

@@ -40,15 +40,15 @@ export function OrderFactory(sequelize: Sequelize): OrderStatic {
       },
       idTable: {
         type: INTEGER,
-        references: { model: "tables", key: "idTable" },
+        references: { model: "tables", key: "id_table" },
       },
       idClient: {
         type: INTEGER,
-        references: { model: "clients", key: "idClient" },
+        references: { model: "clients", key: "id_client" },
       },
       nameClient: {
         type: STRING(50),
-        references: { model: "clients", key: "nameClient" },
+        references: { model: "clients", key: "name" },
       },
       data: {
         type: DATE,

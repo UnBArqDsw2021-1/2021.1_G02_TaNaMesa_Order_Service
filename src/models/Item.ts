@@ -13,15 +13,16 @@ interface ItemAttributes {
   name: string;
   price: number;
   discount: number;
+  image: string;
   description: string;
   notes: string;
   category: string;
 }
-export interface ItemModel extends Model<ItemAttributes>, ItemAttributes { }
-export class Item extends Model<ItemModel, ItemAttributes> { }
+export interface ItemModel extends Model<ItemAttributes>, ItemAttributes {}
+export class Item extends Model<ItemModel, ItemAttributes> {}
 
 export type ItemStatic = typeof Model & {
-  new(values?: object, options?: BuildOptions): ItemModel;
+  new (values?: object, options?: BuildOptions): ItemModel;
 };
 
 export function ItemFactory(sequelize: Sequelize): ItemStatic {

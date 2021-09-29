@@ -1,6 +1,6 @@
-require("dotenv/config");
+import "dotenv/config";
 
-module.exports = {
+export default {
   development: {
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,

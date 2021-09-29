@@ -1,16 +1,14 @@
 import { Request, Response } from "express";
+import fs from "fs";
+
 import database from "../db";
 
-const fs = require('fs');
-const path = require('path')
-
-const base64_encode = (file) => {
-  const bitmap = fs.readFileSync(file);
-  return new Buffer(bitmap).toString('base64');
+interface Filters {
+  category?: string | null;
 }
 
 const getImageName = (id: number, extension: string) =>
-  'item_' + id + '.' + extension
+  `item_${id}.${extension}`;
 
 const create = async (
   request: Request,
@@ -49,19 +47,19 @@ const getAll = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const filters = {};
-    if (request.query.category) filters.category = request.query.category;
+    const filters: Filters = {};
+    if (request.query.category)
+      filters.category = request.query.category as string;
 
     const items = await database.item.findAll({
       where: {
         ...filters,
       },
-    })
-    items.forEach(item => { if (item.image) item.image = base64_encode(`uploads/${item.image}`) });
+    });
 
     return response.json({
       success: true,
-      items
+      items,
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
@@ -79,14 +77,12 @@ const getOne = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const item = await database.item.findByPk(request.params.id)
-    if (item.image) item.image = base64_encode(`uploads/${item.image}`);
+    const item = await database.item.findByPk(request.params.id);
 
     return response.json({
       success: true,
-      item
+      item,
     });
-
   } catch (error) {
     console.log("ERROR ---> ", error);
     return response.status(500).json({
@@ -146,12 +142,20 @@ const uploadPhoto = async (
   response: Response
 ): Promise<Response> => {
   try {
-    await database.item.update({ image: getImageName(request.params.id, request.file?.mimetype?.split('/')[1]) }, {
-      where: { idItem: request.params.id },
-    });
+    await database.item.update(
+      {
+        image: getImageName(
+          Number(request.params.id),
+          request.file?.mimetype?.split("/")[1]
+        ),
+      },
+      {
+        where: { idItem: request.params.id },
+      }
+    );
 
     return response.json({
-      success: true
+      success: true,
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
