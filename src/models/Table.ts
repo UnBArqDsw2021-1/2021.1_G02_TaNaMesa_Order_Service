@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { BuildOptions, Model, Sequelize, INTEGER, STRING } from "sequelize";
+import { BuildOptions, Model, Sequelize, INTEGER, STRING, BOOLEAN } from "sequelize";
 
 interface TableAttributes {
-  idMesa: number;
+  idTable: number;
   cpfWaiter: string;
+  needHelp: boolean;
 }
 export interface TableModel extends Model<TableAttributes>, TableAttributes {}
 export class Table extends Model<TableModel, TableAttributes> {}
@@ -25,6 +26,11 @@ export function TableFactory(sequelize: Sequelize): TableStatic {
         type: STRING(11),
         references: { model: "employees", key: "cpf" },
       },
+      needHelp: {
+        type: BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      }
     },
     {
       freezeTableName: true,

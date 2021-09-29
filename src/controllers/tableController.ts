@@ -32,9 +32,16 @@ const getAll = async (
   response: Response
 ): Promise<Response> => {
   try {
+    const filters = {};
+    if (request.query.needHelp) filters.needHelp = request.query.needHelp;
+
     return response.json({
       success: true,
-      tables: await database.table.findAll(),
+      tables: await database.table.findAll({
+        where: {
+          ...filters,
+        },
+      }),
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
