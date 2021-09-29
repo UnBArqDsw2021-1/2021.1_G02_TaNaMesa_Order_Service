@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import bcrypt from "bcrypt";
 import database from "../db";
 
 const create = async (
@@ -6,17 +7,29 @@ const create = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const fieldsToValidate = ["cpf", "name", "occupation"];
+    const fieldsToValidate = ["cpf", "name", "occupation", "password"];
 
-    fieldsToValidate.forEach((field: string): Response => {
+    let error = false;
+    let fieldName;
+
+    fieldsToValidate.forEach((field: string): void => {
       if (!request.body.employee[field]) {
-        return response.status(400).json({
-          success: false,
-          message: `O campo ${field} é obrigatório.`,
-        });
+        error = true;
+        fieldName = field;
       }
-      return null;
     });
+
+    if (error) {
+      return response.status(400).json({
+        success: false,
+        message: `O campo ${fieldName} é obrigatório.`,
+      });
+    }
+
+    request.body.employee.password = await bcrypt.hash(
+      request.body.employee.password,
+      10
+    );
 
     return response.json({
       success: true,

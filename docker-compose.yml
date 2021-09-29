@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes: 
+    volumes:
       - .:/app
       - /app/node_modules
     ports:
@@ -17,6 +17,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - DB_PORT_DEV=5432
       - DB_HOST_DEV=db_order
+      - SECRET=BF64B4D1BCD914B1
     depends_on:
       - db_order
     # networks:

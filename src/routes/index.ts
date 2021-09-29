@@ -1,11 +1,14 @@
 import express, { Router } from "express";
 
-import clientRoutes from "./client";
-import containRoutes from "./contain";
-import employeeRoutes from "./employee";
-import itemRoutes from "./item";
 import orderRoutes from "./order";
 import tableRoutes from "./table";
+import employeeRoutes from "./employee";
+
+import clientRoutes from "./client";
+import containRoutes from "./contain";
+import itemRoutes from "./item";
+import authRoutes from "./auth";
+import ensureAuth from "../middlewares/ensureAuth";
 
 const routes = Router();
 
@@ -27,12 +30,14 @@ routes.get("/", (request, response) => {
   });
 });
 
-routes.use("/client", clientRoutes);
-routes.use("/contain", containRoutes);
-routes.use("/employee", employeeRoutes);
-routes.use("/item", itemRoutes);
-routes.use("/order", orderRoutes);
-routes.use("/table", tableRoutes);
+routes.use("/login", authRoutes);
+routes.use("/order", ensureAuth, orderRoutes);
+routes.use("/table", ensureAuth, tableRoutes);
+routes.use("/employee", ensureAuth, employeeRoutes);
+routes.use("/client", ensureAuth, clientRoutes);
+routes.use("/item", ensureAuth, itemRoutes);
+routes.use("/contain", ensureAuth, containRoutes);
+
 routes.use("/uploads", express.static("uploads"));
 
 export default routes;
