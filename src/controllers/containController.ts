@@ -6,15 +6,21 @@ const create = async (
   response: Response
 ): Promise<Response> => {
   try {
-    if (!request.body.table.cpfWaiter)
-      return response.status(400).json({
-        success: false,
-        message: "O campo cpfGarcom é obrigatório",
-      });
+    const fieldsToValidate = ["idOrder", "idItem"];
+
+    fieldsToValidate.forEach((field: string): Response => {
+      if (!request.body.contain[field]) {
+        return response.status(400).json({
+          success: false,
+          message: `O campo ${field} é obrigatório`,
+        });
+      }
+      return null;
+    });
 
     return response.json({
       success: true,
-      table: await database.table.create(request.body.table),
+      contain: await database.contain.create(request.body.contain),
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
@@ -33,11 +39,11 @@ const getAll = async (
 ): Promise<Response> => {
   try {
     const filters = {};
-    if (request.query.needHelp) filters.needHelp = request.query.needHelp;
+    if (request.query.category) filters.category = request.query.category;
 
     return response.json({
       success: true,
-      tables: await database.table.findAll({
+      contains: await database.contain.findAll({
         where: {
           ...filters,
         },
@@ -61,7 +67,7 @@ const getOne = async (
   try {
     return response.json({
       success: true,
-      table: await database.table.findByPk(request.params.id),
+      contain: await database.contain.findByPk(request.params.id),
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
@@ -79,8 +85,8 @@ const edit = async (
   response: Response
 ): Promise<Response> => {
   try {
-    await database.table.update(request.body.table, {
-      where: { idTable: request.params.id },
+    await database.contain.update(request.body.contain, {
+      where: { idItem: request.params.id },
     });
     return response.json({
       success: true,
@@ -101,7 +107,7 @@ const destroy = async (
   response: Response
 ): Promise<Response> => {
   try {
-    await database.table.destroy({ where: { idTable: request.params.id } });
+    await database.contain.destroy({ where: { idItem: request.params.id } });
     return response.json({
       success: true,
     });

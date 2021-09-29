@@ -13,6 +13,7 @@ interface ItemAttributes {
   name: string;
   price: number;
   discount: number;
+  image: string;
   description: string;
   notes: string;
   category: string;
@@ -34,6 +35,7 @@ export function ItemFactory(sequelize: Sequelize): ItemStatic {
         autoIncrement: true,
       },
       name: STRING(50),
+      image: STRING(50),
       price: INTEGER,
       discount: INTEGER,
       description: STRING(50),
