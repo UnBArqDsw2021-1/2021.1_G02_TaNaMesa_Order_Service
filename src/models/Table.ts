@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { BuildOptions, Model, Sequelize, INTEGER, STRING, BOOLEAN } from "sequelize";
+import {
+  BuildOptions,
+  Model,
+  Sequelize,
+  INTEGER,
+  STRING,
+  BOOLEAN,
+} from "sequelize";
 
 interface TableAttributes {
   idTable: number;
@@ -30,7 +37,7 @@ export function TableFactory(sequelize: Sequelize): TableStatic {
         type: BOOLEAN,
         allowNull: false,
         defaultValue: false,
-      }
+      },
     },
     {
       freezeTableName: true,
