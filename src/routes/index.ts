@@ -1,10 +1,11 @@
 import { Router } from "express";
+
+import clientRoutes from "./client";
+import containRoutes from "./contain";
+import employeeRoutes from "./employee";
+import itemRoutes from "./item";
 import orderRoutes from "./order";
 import tableRoutes from "./table";
-
-import employeeRoutes from "./employee";
-import clientRoutes from "./client";
-import itemRoutes from "./item";
 
 const routes = Router();
 
@@ -26,10 +27,11 @@ routes.get("/", (request, response) => {
   });
 });
 
-routes.use("/orders", orderRoutes);
-routes.use("/table", tableRoutes);
-routes.use("/employee", employeeRoutes);
 routes.use("/client", clientRoutes);
+routes.use("/contain", containRoutes);
+routes.use("/employee", employeeRoutes);
 routes.use("/item", itemRoutes);
+routes.use("/order", orderRoutes);
+routes.use("/table", tableRoutes);
 
 export default routes;

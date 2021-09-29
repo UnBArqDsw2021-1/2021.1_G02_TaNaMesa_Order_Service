@@ -5,6 +5,7 @@ import { ItemFactory, ItemStatic } from "../models/Item";
 import { ClientFactory, ClientStatic } from "../models/Client";
 import { EmployeeFactory, EmployeeStatic } from "../models/Employee";
 import { TableFactory, TableStatic } from "../models/Table";
+import { ContainFactory, ContainStatic } from "../models/Contain";
 
 console.log(databaseConfig[process.env.NODE_ENV]);
 
@@ -20,6 +21,8 @@ class Database {
   public employee: EmployeeStatic;
 
   public table: TableStatic;
+
+  public contain: ContainStatic;
 
   constructor(test: boolean) {
     this.init(test);
@@ -57,6 +60,9 @@ class Database {
 
         this.table = TableFactory(this.connection);
         await this.table.sync();
+
+        this.contain = ContainFactory(this.connection);
+        await this.contain.sync();
       })
       .catch(() => {
         console.log("\n\n😵‍💫❌ Erro ao conectar no Banco\n");
