@@ -1,4 +1,4 @@
-import { Router } from "express";
+import express, { Router } from "express";
 
 import clientRoutes from "./client";
 import containRoutes from "./contain";
@@ -33,5 +33,6 @@ routes.use("/employee", employeeRoutes);
 routes.use("/item", itemRoutes);
 routes.use("/order", orderRoutes);
 routes.use("/table", tableRoutes);
+routes.use("/uploads", express.static("uploads"));
 
 export default routes;
