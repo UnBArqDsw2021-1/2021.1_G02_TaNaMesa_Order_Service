@@ -33,7 +33,7 @@ routes.get("/", (request, response) => {
 routes.use("/login", authRoutes);
 routes.use("/order", ensureAuth, orderRoutes);
 routes.use("/table", ensureAuth, tableRoutes);
-routes.use("/employee", ensureAuth, employeeRoutes);
+routes.use("/employee", employeeRoutes);
 routes.use("/client", ensureAuth, clientRoutes);
 routes.use("/item", ensureAuth, itemRoutes);
 routes.use("/contain", ensureAuth, containRoutes);
