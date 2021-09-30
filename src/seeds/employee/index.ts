@@ -49,9 +49,12 @@ const employeesSeeds = [
 ];
 
 const runEmployeesSeeds = async (): Promise<void> => {
-  await database.connection.query("DELETE * FROM employees", {
-    type: QueryTypes.DELETE,
-  });
+  await database.connection.query(
+    "DELETE FROM employees WHERE cpf IS NOT NULL",
+    {
+      type: QueryTypes.DELETE,
+    }
+  );
 
   employeesSeeds.forEach(async (employee) => {
     const password = await bcrypt.hash(employee.password, 10);
