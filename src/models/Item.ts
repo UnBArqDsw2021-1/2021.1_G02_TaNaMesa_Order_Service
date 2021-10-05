@@ -35,7 +35,7 @@ export function ItemFactory(sequelize: Sequelize): ItemStatic {
         autoIncrement: true,
       },
       name: STRING(50),
-      image: STRING(50),
+      image: STRING(300),
       price: INTEGER,
       discount: INTEGER,
       description: STRING(50),
