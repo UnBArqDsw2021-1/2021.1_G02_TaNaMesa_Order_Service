@@ -30,10 +30,7 @@ export function ClientFactory(sequelize: Sequelize): ClientStatic {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
-        type: STRING(50),
-        unique: true,
-      },
+      name: STRING(50),
       createdAt: {
         type: DATE,
         allowNull: false,
