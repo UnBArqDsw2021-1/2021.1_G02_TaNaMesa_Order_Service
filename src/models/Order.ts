@@ -46,10 +46,6 @@ export function OrderFactory(sequelize: Sequelize): OrderStatic {
         type: INTEGER,
         references: { model: "clients", key: "id_client" },
       },
-      nameClient: {
-        type: STRING(50),
-        references: { model: "clients", key: "name" },
-      },
       data: {
         type: DATE,
         allowNull: false,
