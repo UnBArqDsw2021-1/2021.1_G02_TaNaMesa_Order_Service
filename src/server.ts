@@ -11,6 +11,7 @@ const port = process.env.PORT || 3333;
       console.log("\n😝 Bem-vindo!");
       console.log(`🚀 Order service started on port ${port}\n\n`);
     });
+
   } catch (error) {
     console.log(error);
   }

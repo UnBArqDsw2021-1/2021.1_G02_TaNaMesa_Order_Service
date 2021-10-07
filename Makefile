@@ -45,3 +45,7 @@ check-db:
 
 cov:
 	docker-compose run order_service yarn cov
+
+seed:
+	chmod +x ./seeds/runSeeds.sh && \
+	./seeds/runSeeds.sh
