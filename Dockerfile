@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN yarn install
+RUN yarn
 COPY . .
 
 CMD ["/bin/sh", "-c", "yarn build && yarn start"]
