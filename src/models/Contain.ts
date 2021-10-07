@@ -40,6 +40,7 @@ export function ContainFactory(sequelize: Sequelize): ContainStatic {
     {
       freezeTableName: true,
       timestamps: false,
+      underscored: true,
     }
   );
 }
