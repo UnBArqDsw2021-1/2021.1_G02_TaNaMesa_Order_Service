@@ -46,6 +46,10 @@ check-db:
 cov:
 	docker-compose run order_service yarn cov
 
-seed:
+seed-devel:
 	chmod +x ./seeds/runSeeds.sh && \
-	./seeds/runSeeds.sh
+	./seeds/runSeeds.sh http://0.0.0.0:3333/
+
+seed-prod:
+	chmod +x ./seeds/runSeeds.sh && \
+	./seeds/runSeeds.sh https://tanamesa-dev-dsw.herokuapp.com/
