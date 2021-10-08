@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export API_URL="http://0.0.0.0:3333/"
+export API_URL=$1
 
 echo "creating employees"
 bash ./seeds/02-employee/seed_curl.sh
@@ -11,8 +11,10 @@ printf -v manager_credentials \
     '{ "cpf": "%s", "password": "%s" }' \
     "123456" "654321"
 
+printf -v login_url '%s%s' "$API_URL" 'login'
+
 export TOKEN=$(\
-curl -s http://localhost:3333/login \
+curl "$login_url" \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -d "$manager_credentials" \
