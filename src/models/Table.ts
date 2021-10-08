@@ -12,6 +12,7 @@ interface TableAttributes {
   idTable: number;
   cpfWaiter: string;
   needHelp: boolean;
+  password: string;
 }
 export interface TableModel extends Model<TableAttributes>, TableAttributes {}
 export class Table extends Model<TableModel, TableAttributes> {}
@@ -37,6 +38,10 @@ export function TableFactory(sequelize: Sequelize): TableStatic {
         type: BOOLEAN,
         allowNull: false,
         defaultValue: false,
+      },
+      password: {
+        type: STRING,
+        allowNull: false,
       },
     },
     {
