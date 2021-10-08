@@ -48,22 +48,22 @@ class Database {
         console.log("\n\n🗃️ Banco de Dados conectado!\n");
 
         this.item = ItemFactory(this.connection);
-        await this.item.sync({ force: true });
+        await this.item.sync();
 
         this.client = ClientFactory(this.connection);
-        await this.client.sync({ force: true });
+        await this.client.sync();
 
         this.employee = EmployeeFactory(this.connection);
-        await this.employee.sync({ force: true });
+        await this.employee.sync();
 
         this.table = TableFactory(this.connection);
-        await this.table.sync({ force: true });
+        await this.table.sync();
 
         this.order = OrderFactory(this.connection);
-        await this.order.sync({ force: true });
+        await this.order.sync();
 
         this.contain = ContainFactory(this.connection);
-        await this.contain.sync({ force: true });
+        await this.contain.sync();
       })
       .catch(() => {
         console.log(
