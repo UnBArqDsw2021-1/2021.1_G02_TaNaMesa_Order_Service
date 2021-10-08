@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import bcrypt from "bcrypt";
 import database from "../db";
 
 const create = async (
@@ -14,7 +15,10 @@ const create = async (
 
     return response.json({
       success: true,
-      table: await database.table.create(request.body.table),
+      table: await database.table.create({
+        ...request.body.table,
+        password: await bcrypt.hash("123456", 10),
+      }),
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
