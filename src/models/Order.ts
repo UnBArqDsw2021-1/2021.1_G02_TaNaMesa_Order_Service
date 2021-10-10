@@ -34,7 +34,13 @@ export function OrderFactory(sequelize: Sequelize): OrderStatic {
         autoIncrement: true,
       },
       status: {
-        type: ENUM("na fila", "na cozinha", "preparando", "na mesa"),
+        type: ENUM(
+          "na fila",
+          "na cozinha",
+          "preparando",
+          "na mesa",
+          "solicitacao pagamento"
+        ),
         allowNull: false,
         defaultValue: "na fila",
       },
