@@ -39,7 +39,8 @@ export function OrderFactory(sequelize: Sequelize): OrderStatic {
           "na cozinha",
           "preparando",
           "na mesa",
-          "solicitacao pagamento"
+          "solicitacao pagamento",
+          "pagamento realizado"
         ),
         allowNull: false,
         defaultValue: "na fila",
