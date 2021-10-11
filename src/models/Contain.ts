@@ -35,10 +35,7 @@ export function ContainFactory(sequelize: Sequelize): ContainStatic {
         type: INTEGER,
         references: { model: "items", key: "id_item" },
       },
-      quantity: {
-          type: INTEGER,
-          allowNull: true,
-      },
+      quantity: INTEGER,
       observation: {
           type: STRING,
           allowNull: true,
