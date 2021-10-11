@@ -1,9 +1,18 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { BuildOptions, Model, Sequelize, DATE, INTEGER } from "sequelize";
+import {
+  BuildOptions,
+  Model,
+  Sequelize,
+  DATE,
+  INTEGER,
+  STRING,
+} from "sequelize";
 
 interface ContainAttributes {
   idOrder: number;
   idItem: number;
+  quantity: string;
+  observation: string;
 }
 export interface ContainModel
   extends Model<ContainAttributes>,
@@ -25,6 +34,14 @@ export function ContainFactory(sequelize: Sequelize): ContainStatic {
       idItem: {
         type: INTEGER,
         references: { model: "items", key: "id_item" },
+      },
+      quantity: {
+          type: INTEGER,
+          allowNull: true,
+      },
+      observation: {
+          type: STRING,
+          allowNull: true,
       },
       createdAt: {
         type: DATE,
