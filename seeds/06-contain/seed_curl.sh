@@ -2,6 +2,8 @@
 
 declare -a idItem=(1 2)
 declare -a idOrder=(1 2)
+declare -a quantity=(11 20)
+declare -a observation=("isso aqui é top" "isso aqui é top também")
 
 make_request() {
     curl "$url" \
