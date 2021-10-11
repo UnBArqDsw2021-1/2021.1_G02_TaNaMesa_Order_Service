@@ -38,17 +38,12 @@ const getAll = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const filters = {};
-    
-    if (request.query.category) filters.category = request.query.category;
-    if(request.query.idTable) filters.idTable = request.query.idTable;
-    if(request.query.idClient) filters.idClient = request.query.idClient;
 
     return response.json({
       success: true,
       orders: await database.order.findAll({
         where: {
-          ...filters,
+          ...request.query,
         },
       }),
     });
