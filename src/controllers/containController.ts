@@ -38,15 +38,10 @@ const getAll = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const filters = {};
-    if (request.query.category) filters.category = request.query.category;
-
     return response.json({
       success: true,
       contains: await database.contain.findAll({
-        where: {
-          ...filters,
-        },
+        where: request.query,
       }),
     });
   } catch (error) {

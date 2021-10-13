@@ -38,14 +38,15 @@ const getAll = async (
   response: Response
 ): Promise<Response> => {
   try {
-
     return response.json({
       success: true,
       orders: await database.order.findAll({
-        where: {
-          ...request.query,
-        },
-      }),
+        where: request.query,
+        include: [
+          { model: database.client },
+          { model: database.table, attributes: ['idTable', 'cpfWaiter', 'needHelp', 'createdAt', 'updatedAt'] }
+        ]
+      })
     });
   } catch (error) {
     console.log("ERROR ---> ", error);

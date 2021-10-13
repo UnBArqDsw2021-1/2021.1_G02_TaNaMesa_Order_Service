@@ -64,6 +64,9 @@ class Database {
 
         this.contain = ContainFactory(this.connection);
         await this.contain.sync();
+
+        this.order.belongsTo(this.client, { foreignKey: 'idClient' });
+        this.order.belongsTo(this.table, { foreignKey: 'idTable' });
       })
       .catch(() => {
         console.log(
