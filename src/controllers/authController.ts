@@ -18,7 +18,7 @@ const login = async (
 
     if (user.cpf === cpf && match) {
       const token = jwt.sign({}, process.env.SECRET, {
-        subject: "1234",
+        subject: user.occupation,
         expiresIn: 86400,
       });
       return response.json({ auth: true, token });
@@ -34,7 +34,7 @@ const login = async (
 
       if (Number(idTable) === table.idTable && match) {
         const token = jwt.sign({}, process.env.SECRET, {
-          subject: "1234",
+          subject: "mesa",
           expiresIn: 86400,
         });
         return response.json({ auth: true, token });
