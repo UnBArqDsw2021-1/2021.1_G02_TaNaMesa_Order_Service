@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -a names=("xburguer" "sorvete" "xbacon" "xsalada" "banana")
-images="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.policymed.com%2F2013%2F04%2Ffda-outlines-generic-safety-and-efficacy.html&psig=AOvVaw3SmuksgaNUp6qfAr_ogq_h&ust=1633521818034000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjNspads_MCFQAAAAAdAAAAABAD"
+images="https://www.policymed.com/wp-content/uploads/2013/04/6a00e5520572bb8834017c3875ac22970b.jpg"
 declare -a prices=($(seq 10 1 15))
 declare -a discounts=($(yes "0" | head -n 5))
 declare -a descriptions=(
