@@ -6,7 +6,7 @@ const create = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const fieldsToValidate = ["status", "idTable", "idClient", "nameClient"];
+    const fieldsToValidate = ["idTable", "idClient"];
 
     fieldsToValidate.forEach((field: string): Response => {
       if (!request.body.order[field]) {
