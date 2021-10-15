@@ -38,13 +38,33 @@ const getAll = async (
   response: Response
 ): Promise<Response> => {
   try {
+    const orders = await database.order.findAll({
+      where: request.query,
+      include: [
+        { model: database.client },
+        { model: database.table, attributes: ['idTable', 'cpfWaiter', 'needHelp', 'createdAt', 'updatedAt'] }
+      ]
+    })
+
+    const ordersWithItems = [];
+
+    for (let order of orders) {
+      const items = []
+
+      const relations = await database.contain.findAll({ where: { idOrder: order.idOrder } });
+
+      for (let rel of relations) {
+        const item = await database.item.findByPk(rel.idItem);
+
+        items.push(item);
+      }
+
+      ordersWithItems.push({ ...order.toJSON(), items })
+    }
+
     return response.json({
       success: true,
-      orders: await database.order.findAll({
-        where: {
-          ...request.query,
-        },
-      }),
+      orders: ordersWithItems
     });
   } catch (error) {
     console.log("ERROR ---> ", error);

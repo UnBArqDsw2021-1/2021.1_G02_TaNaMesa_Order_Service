@@ -47,14 +47,8 @@ const getAll = async (
   response: Response
 ): Promise<Response> => {
   try {
-    const filters: Filters = {};
-    if (request.query.category)
-      filters.category = request.query.category as string;
-
     const items = await database.item.findAll({
-      where: {
-        ...filters,
-      },
+      where: request.query,
     });
 
     return response.json({
