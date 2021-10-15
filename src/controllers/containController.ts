@@ -38,11 +38,21 @@ const getAll = async (
   response: Response
 ): Promise<Response> => {
   try {
+    const contains = await database.contain.findAll({
+      where: request.query,
+    });
+
+    const containsWithItem = []
+
+    for (let contain of contains) {
+      const item = await database.item.findByPk(contain.idItem);
+      const order = await database.order.findByPk(contain.idOrder);
+      containsWithItem.push({ ...contain.toJSON(), item, order })
+    }
+
     return response.json({
       success: true,
-      contains: await database.contain.findAll({
-        where: request.query,
-      }),
+      contains: containsWithItem
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
@@ -60,9 +70,13 @@ const getOne = async (
   response: Response
 ): Promise<Response> => {
   try {
+    const contain = await database.contain.findByPk(request.params.id);
+    const item = await database.item.findByPk(contain.idItem);
+    const order = await database.order.findByPk(contain.idOrder);
+
     return response.json({
       success: true,
-      contain: await database.contain.findByPk(request.params.id),
+      contain: { ...contain.toJSON(), item, order },
     });
   } catch (error) {
     console.log("ERROR ---> ", error);
