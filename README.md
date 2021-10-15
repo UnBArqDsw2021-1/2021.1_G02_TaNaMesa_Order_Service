@@ -27,9 +27,9 @@ Um sistema para que as pessoas possam chegar no restaurante fazer seus pedidos s
 ## Descritivo dos Principais Aspectos Técnicos 
 
 **Principal(is) Metodologia(s) Adotada(s)**: Kanban, XP, Scrum<br>
-**Principais Linguagens Utilizadas e/ou Pretendidas**: Typescript, CSS, Html<br>
-**Principais Tecnologias Utilizadas e/ou Pretendidas**: Docker, Heroku, Node.js<br>
-**Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: Micro serviços<br>
+**Principais Linguagens Utilizadas e/ou Pretendidas**: Typescript<br>
+**Principais Tecnologias Utilizadas e/ou Pretendidas**: Docker, Heroku, Node.js, PostgreSQL<br>
+**Principal(is) Estilo(s) Arquitetural(is) Adotado(s)**: Monilítico/Microsserviços<br>
 
 ## O Projeto está rodando?
 
