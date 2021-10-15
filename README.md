@@ -33,8 +33,8 @@ Um sistema para que as pessoas possam chegar no restaurante fazer seus pedidos s
 
 ## O Projeto está rodando?
 
-( ) SIM
-( ) NÃO
+(X) SIM
+( ) NÃO<br>
 Se SIM, insira um manual (ou um script) para auxiliar ainda mais os interessados em consultar o projeto.
 
 ## Informações Complementares 
@@ -45,11 +45,8 @@ Quaisquer outras informações sobre seu projeto podem ser descritas nessa seç�
 ### Local
 **[Disponível na porta 3333.](http://localhost:3333/)**
 
-### Ambiente de homologação
-**[Disponível no Heroku]()**
-
 ### Ambiente de produção
-**[Disponível no Heroku]()**
+**[Disponível no Heroku](https://tanamesa-dev-dsw.herokuapp.com)**
 
 ***
 ## Colocando no ar localmente
